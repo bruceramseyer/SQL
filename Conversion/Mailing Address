@@ -1,0 +1,11 @@
+/*conversion of customer information for mailing*/
+
+SELECT 	CONCAT(first_name, ' ',last_name) AS full_name,
+		CONCAT(address, ', ', city, ', ', district, ' ', postal_code) AS mailing_address,
+		country
+FROM customer
+JOIN address ON customer.address_id = address.address_id
+JOIN city ON address.city_id = city.city_id
+JOIN country ON city.country_id = country.country_id
+WHERE country = 'United States'
+ORDER BY district ASC
